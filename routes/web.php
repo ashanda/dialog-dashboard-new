@@ -36,7 +36,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dev/wp-json/app/api/harbour_locations', [ApiController::class, 'getHarbourLocations']);
+Route::get('/wp-json/app/api/harbour_locations', [ApiController::class, 'getHarbourLocations']);
 
 
 Auth::routes();

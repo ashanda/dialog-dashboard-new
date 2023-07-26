@@ -10,7 +10,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="examples/profile.html">
+            <a class="nav-link " href="{{ route('admin.users_edit',Auth::user()->id) }} ">
               <i class="ni ni-single-02 text-yellow"></i> Profile
             </a>
           </li>

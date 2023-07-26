@@ -42,8 +42,8 @@ return new class extends Migration
             $table->string('text_font_colour');
             $table->string('text_background_colour');
             $table->string('text_decription_duration')->nullable();
-            $table->string('first_video_url');
-            $table->string('first_video_play_duration');
+            $table->string('first_video_url')->nullable();
+            $table->string('first_video_play_duration')->nullable();
             $table->string('second_video_url')->nullable();
             $table->string('second_video_play_duration')->nullable();
             $table->timestamps();

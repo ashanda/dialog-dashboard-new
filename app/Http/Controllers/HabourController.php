@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Habour;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+
+use function PHPSTORM_META\type;
 
 class HabourController extends Controller
 {
@@ -18,10 +21,11 @@ class HabourController extends Controller
 
         if(Auth::user()->type == 'admin'){
             $locations = Habour::paginate(10);
+            $users = User::where('type', 2)->get();
         }else{
             
         }
-        return view('pages.habour',compact('locations'));
+        return view('pages.habour',compact('locations','users'));
     }
 
     /**
@@ -41,6 +45,11 @@ class HabourController extends Controller
     $validatedData = $request->validate([
         // Your validation rules for other fields
         'first_image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'second_image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'third_image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'fourth_image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'first_video_url' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-flv,video/x-ms-wmv',
+        'second_video_url' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-flv,video/x-ms-wmv',
     ]);
     
         // Handle image and video uploads (you may need to configure storage settings for images and videos)
@@ -53,23 +62,23 @@ class HabourController extends Controller
         
         }
 
-        if ($request->hasFile('second_image_url')) {
+        if ($request->hasFile('second_image_url') && $request->file('second_image_url')->isValid()) {
             $imagePaths['second_image_url'] = $request->file('second_image_url')->store('images', 'public');
         }
 
-        if ($request->hasFile('third_image_url')) {
+        if ($request->hasFile('third_image_url') && $request->file('third_image_url')->isValid()) {
             $imagePaths['third_image_url'] = $request->file('third_image_url')->store('images', 'public');
         }
 
-        if ($request->hasFile('fourth_image_url')) {
+        if ($request->hasFile('fourth_image_url') && $request->file('fourth_image_url')->isValid()) {
             $imagePaths['fourth_image_url'] = $request->file('fourth_image_url')->store('images', 'public');
         }
 
-        if ($request->hasFile('first_video_url')) {
+        if ($request->hasFile('first_video_url') && $request->file('first_video_url')->isValid()) {
             $videoPaths['first_video_url'] = $request->file('first_video_url')->store('videos', 'public');
         }
 
-        if ($request->hasFile('second_video_url')) {
+        if ($request->hasFile('second_video_url') && $request->file('second_video_url')->isValid()) {
             $videoPaths['second_video_url'] = $request->file('second_video_url')->store('videos', 'public');
         }
 
@@ -95,9 +104,9 @@ class HabourController extends Controller
         // Assign image and video paths to model attributes
         $appUrl = env('APP_URL');
         $harbourLocation->first_image_url = $appUrl .'/storage/'.$imagePaths['first_image_url'] ?? null;
-        $harbourLocation->second_image_url = $imagePaths['second_image_url'] ?? null;
-        $harbourLocation->third_image_url = $imagePaths['third_image_url'] ?? null;
-        $harbourLocation->fourth_image_url = $imagePaths['fourth_image_url'] ?? null;
+        $harbourLocation->second_image_url = $appUrl .'/storage/'.$imagePaths['second_image_url'] ?? null;
+        $harbourLocation->third_image_url = $appUrl .'/storage/'.$imagePaths['third_image_url'] ?? null;
+        $harbourLocation->fourth_image_url = $appUrl .'/storage/'.$imagePaths['fourth_image_url'] ?? null;
 
         $harbourLocation->first_image_play_duration = $request->first_image_play_duration;
         $harbourLocation->second_image_play_duration = $request->second_image_play_duration;
@@ -110,11 +119,9 @@ class HabourController extends Controller
         $harbourLocation->text_background_colour = $request->text_background_colour;
         $harbourLocation->text_decription_duration = $request->text_description_duration;
 
-        $harbourLocation->first_video_url = $videoPaths['first_video_url'] ?? null;
+        $harbourLocation->first_video_url = $appUrl .'/storage/'.$videoPaths['first_video_url'] ?? null;
         $harbourLocation->first_video_play_duration = $request->first_video_play_duration;
-        $harbourLocation->first_video_url = $videoPaths['first_video_url'] ?? null;
-        $harbourLocation->first_video_play_duration = $request->first_video_play_duration;
-        $harbourLocation->second_video_url = $videoPaths['second_video_url'] ?? null;
+        $harbourLocation->second_video_url = $appUrl .'/storage/'.$videoPaths['second_video_url'] ?? null;
         $harbourLocation->second_video_play_duration = $request->second_video_play_duration;
         // Add other fields similarly
 
@@ -153,6 +160,11 @@ class HabourController extends Controller
         $validatedData = $request->validate([
         // Your validation rules for other fields
         'first_image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'second_image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'third_image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'fourth_image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'first_video_url' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-flv,video/x-ms-wmv',
+        'second_video_url' => 'nullable|file|mimetypes:video/mp4,video/quicktime,video/x-msvideo,video/x-flv,video/x-ms-wmv',
     ]);
     
         // Handle image and video uploads (you may need to configure storage settings for images and videos)
@@ -165,23 +177,23 @@ class HabourController extends Controller
         
         }
 
-        if ($request->hasFile('second_image_url')) {
+        if ($request->hasFile('second_image_url') && $request->file('second_image_url')->isValid()) {
             $imagePaths['second_image_url'] = $request->file('second_image_url')->store('images', 'public');
         }
 
-        if ($request->hasFile('third_image_url')) {
+        if ($request->hasFile('third_image_url') && $request->file('third_image_url')->isValid()) {
             $imagePaths['third_image_url'] = $request->file('third_image_url')->store('images', 'public');
         }
 
-        if ($request->hasFile('fourth_image_url')) {
+        if ($request->hasFile('fourth_image_url') && $request->file('fourth_image_url')->isValid()) {
             $imagePaths['fourth_image_url'] = $request->file('fourth_image_url')->store('images', 'public');
         }
 
-        if ($request->hasFile('first_video_url')) {
+        if ($request->hasFile('first_video_url') && $request->file('first_video_url')->isValid()) {
             $videoPaths['first_video_url'] = $request->file('first_video_url')->store('videos', 'public');
         }
 
-        if ($request->hasFile('second_video_url')) {
+        if ($request->hasFile('second_video_url') && $request->file('second_video_url')->isValid()) {
             $videoPaths['second_video_url'] = $request->file('second_video_url')->store('videos', 'public');
         }
 
@@ -211,9 +223,9 @@ class HabourController extends Controller
         // Assign image and video paths to model attributes
         $appUrl = env('APP_URL');
         $harbourLocation->first_image_url = $appUrl .'/storage/'.$imagePaths['first_image_url'] ?? null;
-        $harbourLocation->second_image_url = $imagePaths['second_image_url'] ?? null;
-        $harbourLocation->third_image_url = $imagePaths['third_image_url'] ?? null;
-        $harbourLocation->fourth_image_url = $imagePaths['fourth_image_url'] ?? null;
+        $harbourLocation->second_image_url = $appUrl .'/storage/'.$imagePaths['second_image_url'] ?? null;
+        $harbourLocation->third_image_url = $appUrl .'/storage/'.$imagePaths['third_image_url'] ?? null;
+        $harbourLocation->fourth_image_url = $appUrl .'/storage/'.$imagePaths['fourth_image_url'] ?? null;
 
         $harbourLocation->first_image_play_duration = $request->first_image_play_duration;
         $harbourLocation->second_image_play_duration = $request->second_image_play_duration;
@@ -226,11 +238,9 @@ class HabourController extends Controller
         $harbourLocation->text_background_colour = $request->text_background_colour;
         $harbourLocation->text_decription_duration = $request->text_description_duration;
 
-        $harbourLocation->first_video_url = $videoPaths['first_video_url'] ?? null;
+        $harbourLocation->first_video_url = $appUrl .'/storage/'.$videoPaths['first_video_url'] ?? null;
         $harbourLocation->first_video_play_duration = $request->first_video_play_duration;
-        $harbourLocation->first_video_url = $videoPaths['first_video_url'] ?? null;
-        $harbourLocation->first_video_play_duration = $request->first_video_play_duration;
-        $harbourLocation->second_video_url = $videoPaths['second_video_url'] ?? null;
+        $harbourLocation->second_video_url = $appUrl .'/storage/'.$videoPaths['second_video_url'] ?? null;
         $harbourLocation->second_video_play_duration = $request->second_video_play_duration;
         //
         Alert::success('Success', 'Habour location update successfully!'); 

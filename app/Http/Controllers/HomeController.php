@@ -78,7 +78,7 @@ class HomeController extends Controller
 
         public function users(){
             if(Auth::user()->type == 'admin'){
-                    $users = User::paginate(10);
+                    $users = User::where('type',2)->paginate(10);
                 }else{
                     
                 }
@@ -119,4 +119,43 @@ class HomeController extends Controller
 
         return view('managerHome');
     }
+
+
+    public function users_edit($id){
+         $user = User::findOrFail($id);
+         return view('pages.user_edit',compact('user'));
+    }
+
+
+    public function users_update(Request $request, $id){
+
+         $user = User::findOrFail($id);
+         $user->name =  $request->name;
+         $user->email =  $request->email;
+         $user->type =  $request->account_type;
+         $user->password = bcrypt( $request->password);
+            
+         // Save the user to the database
+         $user->save();
+         Alert::success('Success', 'User update successfully!'); 
+         return redirect()->route('admin.users');
+    }
+
+
+    public function users_destroy($id){
+
+       $users = User::find($id);
+
+    if (!$users) {
+        Alert::warning('Warning','User not found!');
+        return redirect()->back()->with('error', 'Habour location not found!');
+    }
+
+    // Delete the habour location
+    $users->delete();
+    Alert::success('Success', 'User deleted successfully!'); 
+    return redirect()->back()->with('success', 'Habour location deleted successfully!');
+    }
+
+
 }

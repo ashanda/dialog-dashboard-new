@@ -33,7 +33,10 @@ class ApiController extends Controller
             $harbourLocation->sixth_website_url = $harbourLocation->sixth_website_url ?? "";
             $harbourLocation->seventh_website_url = $harbourLocation->seventh_website_url ?? "";
 
-            $harbourLocation->second_video_url = $harbourLocation->second_video_url ?? "";
+            $harbourLocation->first_video_url = $harbourLocation->first_video_url ?? false;
+            $harbourLocation->first_video_play_duration = $harbourLocation->first_video_play_duration ?? "";
+
+            $harbourLocation->second_video_url = $harbourLocation->second_video_url ?? false;
             $harbourLocation->second_video_play_duration = $harbourLocation->second_video_play_duration ?? "";
         }
         $harbourLocations->makeHidden(['created_at', 'updated_at']);

@@ -17,7 +17,7 @@
                     </div>
           <div class="col-lg-6 col-5 text-right">
             
-              <a href="{{ route('habour-location.update', $location->id) }}" class="btn btn-md btn-neutral">Back</a>
+              <a href="{{ route('habour-location.edit', $location->id) }}" class="btn btn-md btn-neutral">Back</a>
           </div>
 
                     
@@ -26,7 +26,7 @@
                 <div class="card-header">Update harbour locations</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('habour-location.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('habour-location.update', $location->id) }}" enctype="multipart/form-data">
                          @csrf
                             @method('PUT')
 
@@ -117,7 +117,7 @@
                                 <img id="preview" src="{{ $location->first_image_url }}" alt="Image Preview" style="max-width: 400px; max-height: 400px;">
                             </div>
                             <label for="first_image_url">First Image URL</label>
-                            <input type="file" name="first_image_url" id="first_image_url" class="form-control" required>
+                            <input type="file" name="first_image_url" id="first_image_url" value="{{ $location->first_image_url }}" class="form-control" >
                         </div>
 
                         <div class="form-group">

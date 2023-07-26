@@ -32,12 +32,15 @@
                             <label for="slug">Habour location name</label>
                             <input type="text" name="slug" id="slug" class="form-control"  required>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="location_data">Location Data</label>
-                            <textarea name="location_data" id="location_data"  class="form-control"></textarea>
+                            <label for="latitude">Latitude</label>
+                            <input type="text" name="latitude" id="latitude"  class="form-control">
                         </div>
-
+                        <div class="form-group">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" name="longitude" id="longitude"  class="form-control">
+                        </div>
                         <div class="form-group">
                             <label for="first_website_url">First Website URL</label>
                             <input type="text" name="first_website_url" id="first_website_url" class="form-control"  required>

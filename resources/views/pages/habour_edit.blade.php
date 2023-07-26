@@ -36,10 +36,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="location_data">Location Data</label>
-                            <textarea name="location_data" id="location_data" value="{{ $location->location_data }}" class="form-control"></textarea>
+                            <label for="latitude">Latitude</label>
+                            <input type="text" name="latitude" id="latitude" value="{{ $location->latitude }}"  class="form-control">
                         </div>
-
+                        <div class="form-group">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" name="longitude" id="longitude" value="{{ $location->longitude }}"  class="form-control">
+                        </div>
                         <div class="form-group">
                             <label for="first_website_url">First Website URL</label>
                             <input type="text" name="first_website_url" id="first_website_url" class="form-control" value="{{ $location->first_website_url }}" required>

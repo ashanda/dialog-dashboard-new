@@ -85,7 +85,8 @@ class HabourController extends Controller
         // Create and store the HarbourLocation model
         $harbourLocation = new Habour();
         $harbourLocation->slug = $request->slug;
-        $harbourLocation->location_data = $request->location_data;
+        $harbourLocation->latitude = $request->latitude;
+        $harbourLocation->longitude = $request->longitude;
         $harbourLocation->first_website_url = $request->first_website_url;
         $harbourLocation->first_site_duration = $request->first_site_duration;
         $harbourLocation->second_website_url = $request->second_website_url;
@@ -195,7 +196,8 @@ class HabourController extends Controller
             return redirect()->back()->with('error', 'Habour location not found!');
         }
         $harbourLocation->slug = $request->slug;
-        $harbourLocation->location_data = $request->location_data;
+        $harbourLocation->latitude = $request->latitude;
+        $harbourLocation->longitude = $request->longitude;
         $harbourLocation->first_website_url = $request->first_website_url;
         $harbourLocation->first_site_duration = $request->first_site_duration;
         $harbourLocation->second_website_url = $request->second_website_url;

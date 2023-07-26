@@ -7,7 +7,9 @@ use Illuminate\View\View;
 use App\Models\User; 
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Support\Facades\Http;
+use App\Models\Habour;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -98,7 +100,18 @@ class HomeController extends Controller
 
     {
 
-        return view('adminHome');
+// echo $response;
+$harbourLocations = DB::table('habours')
+    ->select('latitude as lat ', 'longitude as lng')
+    ->where('latitude', '!=', null)
+    ->where('longitude', '!=', null)
+    ->get();
+
+        $locationsArray = $harbourLocations->toArray();
+
+// Convert the array to a JSON string
+$location_json = json_encode($locationsArray);
+        return view('adminHome',compact('location_json'));
     }
 
 

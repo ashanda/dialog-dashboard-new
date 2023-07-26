@@ -153,7 +153,7 @@
         );
 
         const mapOptions = {
-            zoom: 7.4,
+            zoom: 7,
             center: { lat: 7.202384607626241, lng: 80.7718 }, // Set an appropriate center for the initial map view
             restriction: {
                 latLngBounds: sriLankaBounds,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\LocationUser;
+use App\Models\Habour;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -28,4 +29,15 @@ function locationUser($locationId) {
     }
 
     return $users;
+}
+
+
+function all_location(){
+    $location_count = Habour::count();
+    return $location_count;
+}
+
+function all_user(){
+    $location_count = User::count();
+    return $location_count;
 }

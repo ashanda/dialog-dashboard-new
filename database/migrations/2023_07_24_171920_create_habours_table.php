@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('habours', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
+            $table->string('location_data');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('first_website_url');

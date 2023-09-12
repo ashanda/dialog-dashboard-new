@@ -85,6 +85,7 @@ class HabourController extends Controller
         // Create and store the HarbourLocation model
         $harbourLocation = new Habour();
         $harbourLocation->slug = $request->slug;
+        $harbourLocation->location_data = $request->slug;
         $harbourLocation->latitude = $request->latitude;
         $harbourLocation->longitude = $request->longitude;
         $harbourLocation->first_website_url = $request->first_website_url;

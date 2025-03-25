@@ -47,14 +47,17 @@
       </div>
     </nav>
     <!-- Header -->
+    @if(!Route::is('fishers'))
     <div class="header bg-gradient-primary py-7 py-lg-8">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
-                <a href="{{ asset('index.html') }}">
-                  <img src="{{ asset('assets/img/logo/sayuru.png') }}" class="logo-center">
-                </a>
+              
+                  <a href="{{ asset('index.html') }}">
+                      <img src="{{ asset('assets/img/logo/sayuru.png') }}" class="logo-center">
+                  </a>
+              
               
              
             </div>
@@ -67,9 +70,11 @@
         </svg>
       </div>
     </div>
+    @endif
     <!-- Page content -->
     @yield('login_form')
     @yield('register_form')
+    @yield('content')
   </div>
   <!--   Core   -->
   <script src="{{ asset('assets/js/plugins/jquery/dist/jquery.min.js') }}"></script>

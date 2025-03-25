@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FishersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HabourController;
@@ -37,7 +38,11 @@ Route::get('/', function () {
 });
 
 Route::get('/wp-json/app/api/harbour_locations', [ApiController::class, 'getHarbourLocations']);
+// Route::get('/fishers', function () {
 
+//     return view('auth.login');
+// });
+Route::get('fishers', [FishersController::class, 'fishers'])->name('fishers');
 
 Auth::routes();
 
@@ -78,7 +83,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::get('/admin/register', [HomeController::class, 'register'])->name('admin.register');
-    Route::post('/admin/register', [HomeController::class, 'store'])->name('admin.register');
+    Route::post('/admin/register/save', [HomeController::class, 'store'])->name('admin.register.save');
 
     Route::post('/admin/assign-location', [LocationUserController::class, 'store'])->name('assign.location');
 
@@ -108,3 +113,6 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
 });
+
+//Globle Routes
+

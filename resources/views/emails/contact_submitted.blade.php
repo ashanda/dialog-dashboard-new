@@ -10,9 +10,10 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
         .email-container {
-            width: 100%;
+            width: 60%;
             max-width: 600px;
             margin: 0 auto;
             background-color: #ffffff;
@@ -26,6 +27,7 @@
         }
         .email-body {
             margin: 20px 0;
+            text-align: center;  /* Align text to the left for body content */
         }
         .email-body ul {
             list-style: none;
@@ -63,7 +65,7 @@
             </ul>
         </div>
         <div class="email-footer">
-            <p>Sayuru Web App</p>
+            <p>Best regards,<br>Your Company</p>
         </div>
     </div>
 </body>

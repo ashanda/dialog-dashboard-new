@@ -13,11 +13,11 @@
             text-align: left;  /* Ensures text is left-aligned */
         }
         .email-container {
-            width: 100%;
+            width: auto;
             margin: 0 auto;
             background-color: #ffffff;
             padding: 20px;
-            padding-left: 40px;  /* Remove left padding */
+            padding-left: 20px;  /* Remove left padding */
             padding-right: 20px;  /* Keep right padding */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

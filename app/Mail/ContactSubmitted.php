@@ -6,23 +6,24 @@ use Illuminate\Mail\Mailable;
 
 class ContactSubmitted extends Mailable
 {
-    protected $name;
-    protected $contact;
+    public $contactFormData;
+    public $recipientEmail;
 
     // Constructor to pass the contact details
-    public function __construct($name, $contact)
+    public function __construct($contactFormData,$recipientEmail)
     {
-        $this->name = $name;
-        $this->contact = $contact;
+        $this->contactFormData = $contactFormData;
+        $this->recipientEmail = $recipientEmail;
     }
 
     // Build the email content
     public function build()
     {
-        return $this->view('emails.contact_submitted')
+        return $this->view('emails.contact_submitted') // Define a view for the email body
                     ->with([
-                        'name' => $this->name,
-                        'contact' => $this->contact,
-                    ]);
+                        'contactFormData' => $this->contactFormData, // Pass message data
+                    ])
+                    ->from($this->recipientEmail) // Set from address
+                    ->subject('New Contact Submission'); // Set the subject        
     }
 }

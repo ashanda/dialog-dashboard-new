@@ -10,24 +10,26 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            text-align: center;
+            text-align: left;  /* Ensures text is left-aligned */
         }
         .email-container {
-            width: 60%;
-            max-width: 600px;
+            width: 100%;
             margin: 0 auto;
             background-color: #ffffff;
             padding: 20px;
+            padding-left: 40px;  /* Remove left padding */
+            padding-right: 20px;  /* Keep right padding */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;  /* Ensures the email content inside is left-aligned */
         }
         .email-header {
-            text-align: center;
+            text-align: left;  /* Left align header */
             color: #4CAF50;
         }
         .email-body {
             margin: 20px 0;
-            text-align: center;  /* Align text to the left for body content */
+            text-align: left;  /* Align text to the left for body content */
         }
         .email-body ul {
             list-style: none;
@@ -43,7 +45,7 @@
         .email-footer {
             font-size: 14px;
             color: #555;
-            text-align: center;
+            text-align: left;  /* Left-align footer text */
             margin-top: 30px;
         }
         .email-footer a {

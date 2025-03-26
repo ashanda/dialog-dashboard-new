@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Details Submitted</title>
-</head>
-<body>
-    <h1>New Contact Submitted</h1>
-    <p><strong>Name:</strong> {{ $name }}</p>
-    <p><strong>Contact Number:</strong> {{ $contact }}</p>
-</body>
-</html>
+<p>Hello,</p>
+
+<p>You have received a new contact submission:</p>
+
+<ul>
+    <li><strong>Name:</strong> {{ $contactFormData['name'] }}</li>
+    <li><strong>Contact:</strong> {{ $contactFormData['contact'] }}</li>
+</ul>
+
+<p>Best regards,<br>Your Company</p>

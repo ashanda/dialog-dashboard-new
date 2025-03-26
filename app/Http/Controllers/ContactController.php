@@ -26,13 +26,13 @@ class ContactController extends Controller
             Alert::error('Already Submitted', 'You have already submitted your contact details!');
             return redirect()->back();
         }
-
+        $contactFormData = $request->only(['name', 'contact']);
         // Create and store the contact in the database
         Contact::create([
             'name' => $request->name,
             'contact' => $request->contact,
         ]);
-        SendContactEmails::dispatch($request->name, $request->contact);
+        SendContactEmails::dispatch($contactFormData);
         // Success message
         Alert::success('Success', 'Submitted successfully!');
         return redirect()->back();

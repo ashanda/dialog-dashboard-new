@@ -49,6 +49,7 @@ Route::get('insurance', [EmailsController::class,'insurance'])->name('emails.ins
 Route::post('insurance/store', [ContactController::class,'store'])->name('insurances.store');
 
 Route::resource('emails', EmailsController::class);
+
 Auth::routes();
 
 

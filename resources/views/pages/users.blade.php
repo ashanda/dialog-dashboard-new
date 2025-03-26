@@ -59,8 +59,12 @@
                       
                       @if ( $user->type == 'admin' )
                         {{ 'Admin' }}
-                      @else
+                      @elseif ( $user->type == 'manager' )
                         {{ 'Location manager' }}
+                      @elseif ( $user->type == 'user' )
+                        {{ 'User' }}
+                      @else
+                       
                       @endif
                     
                     </td>

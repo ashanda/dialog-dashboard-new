@@ -13,7 +13,7 @@
                 <div class="card-header text-center">{{ __('Create New Account') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.register') }}">
+                    <form method="POST" action="{{ route('admin.register.save') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -52,6 +52,7 @@
                                     <select name="account_type"  class="form-control" required>
                                         <option value="1">Admin</option>
                                         <option value="2">Location Maneger</option>
+                                        <option value="0">Fisher Manage</option>
                                     </select>
                             </div>
                         </div>

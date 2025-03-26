@@ -39,8 +39,18 @@ class HomeController extends Controller
     public function index(): View
 
     {
+        $harbourLocations = DB::table('habours')
+    ->select('latitude as lat ', 'longitude as lng')
+    ->where('latitude', '!=', null)
+    ->where('longitude', '!=', null)
+    ->get();
 
-        return view('home');
+        $locationsArray = $harbourLocations->toArray();
+
+// Convert the array to a JSON string
+$location_json = json_encode($locationsArray);
+
+        return view('home', compact('location_json'));
     }
 
 
@@ -58,10 +68,10 @@ class HomeController extends Controller
     $validatedData = $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users',
-        'account_type' => 'required|in:1,2', // Assuming 'account_type' should be 1 or 2
+        'account_type' => 'required|in:1,2,3', // Assuming 'account_type' should be 1 or 2
         'password' => 'required|min:6|confirmed',
     ]);
-
+try {
     // Create a new user instance
     $user = new User();
     $user->name = $validatedData['name'];
@@ -73,14 +83,19 @@ class HomeController extends Controller
     $user->save();
 
     Alert::success('Success', 'Account added successfully!'); 
-    return redirect()->route('admin.users')->with('success', 'Account added successfully!');
+
+} catch (\Exception $e) {
+    Alert::error($e->getMessage()); 
+    
+}
+    return redirect()->route('admin.users');
 
 }
 
 
         public function users(){
             if(Auth::user()->type == 'admin'){
-                    $users = User::where('type',2)->paginate(10);
+                 $users = User::whereIn('type', [2, 0])->paginate(10);
                 }else{
                     
                 }

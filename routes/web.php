@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EmailsController;
 use App\Http\Controllers\FishersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -42,8 +44,11 @@ Route::get('/wp-json/app/api/harbour_locations', [ApiController::class, 'getHarb
 
 //     return view('auth.login');
 // });
-Route::get('fishers', [FishersController::class, 'fishers'])->name('fishers');
+Route::get('live/fishers', [FishersController::class, 'fishers'])->name('live.fishers');
+Route::get('insurance', [EmailsController::class,'insurance'])->name('emails.insurance');
+Route::post('insurance/store', [ContactController::class,'store'])->name('insurances.store');
 
+Route::resource('emails', EmailsController::class);
 Auth::routes();
 
 
@@ -61,6 +66,12 @@ All Normal Users Routes List
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
 
+    Route::get('/fishers', [FishersController::class, 'index'])->name('fishers.index');
+    Route::get('/fishers/create', [FishersController::class, 'create'])->name('fishers.create');
+    Route::post('/fishers', [FishersController::class, 'store'])->name('fishers.store');
+    Route::get('/fishers/{id}/edit', [FishersController::class, 'edit'])->name('fishers.edit');
+    Route::put('/fishers/{id}', [FishersController::class, 'update'])->name('fishers.update');
+    Route::delete('/fishers/{id}', [FishersController::class, 'destroy'])->name('fishers.destroy');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });

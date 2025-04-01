@@ -24,13 +24,15 @@ class FishersController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'language'=> 'required|string|max:255'
         ]);
 
         $imagePath = $request->file('image')->store('fishers', 'public');
 
         Fishers::create([
             'name' => $request->name,
+            'language' => $request->language,
             'image' => $imagePath
         ]);
         Alert::success('Success', 'Fisher created successfully!');
@@ -49,7 +51,8 @@ class FishersController extends Controller
 
         $request->validate([
             'name' => 'sometimes|required|string|max:255',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'language' => 'sometimes|required|string|max:255'
         ]);
 
         if ($request->hasFile('image')) {
@@ -60,6 +63,9 @@ class FishersController extends Controller
 
         if ($request->has('name')) {
             $fisher->name = $request->name;
+        }
+        if ($request->has('language')) {
+            $fisher->language = $request->language;
         }
 
         $fisher->save();
@@ -77,8 +83,16 @@ class FishersController extends Controller
     }
 
     public function fishers(){
-        $allFishers = Fishers::get();
+        $allFishers = Fishers::where('language','English')->get();
         return view('pages.fishers', compact('allFishers'));
+    }
+    public function fishersSi(){
+        $allFishers = Fishers::where('language','English')->get();
+        return view('pages.fishersSi', compact('allFishers'));
+    }
+    public function fishersTa(){
+        $allFishers = Fishers::where('language','English')->get();
+        return view('pages.fishersTa', compact('allFishers'));
     }
 
 }

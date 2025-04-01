@@ -56,4 +56,12 @@ class EmailsController extends Controller
     public function insurance(){
         return view('pages.insurance');
     }
+
+    public function insuranceSi(){
+        return view('pages.insuranceSi');
+    }
+
+    public function insuranceTa(){
+        return view('pages.insuranceTa');
+    }
 }

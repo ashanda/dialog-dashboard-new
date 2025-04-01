@@ -31,6 +31,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Image</th>
+                        <th>Language</th>
                         <th>Last Updated</th>
                         <th>Actions</th>
                     </tr>
@@ -40,6 +41,7 @@
                   <tr>
                       <td>{{ $fisher->name }}</td>
                       <td><img src="{{ asset('storage/'.$fisher->image) }}" width="100" alt="Fisher Image"></td>
+                      <td>{{ $fisher->language }}</td>
                       <td>{{ $fisher->updated_at }}</td>
                       <td>
                           <a href="{{ route('fishers.edit', $fisher->id) }}" class="btn btn-default">Edit</a>

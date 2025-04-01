@@ -18,6 +18,15 @@
             <input type="text" name="name" class="form-control" required>
         </div>
         <div class="mb-3">
+            <label class="form-label">Language</label>
+            <select name="language" class="form-control" required>
+                <option value="">Select Language</option>
+                <option value="English">English</option>
+                <option value="Sinhala">Sinhala</option>
+                <option value="Tamil">Tamil</option> 
+            </select>
+        </div>
+        <div class="mb-3">
             <label class="form-label">Image</label>
             <input type="file" name="image" class="form-control" required>
         </div>

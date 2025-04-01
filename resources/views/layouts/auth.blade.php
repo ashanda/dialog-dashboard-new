@@ -48,7 +48,12 @@
       </div>
     </nav>
     <!-- Header -->
-    @if(!Route::is('live.fishers') && !Route::is('emails.insurance'))
+    @if(!Route::is('live.fishers') && 
+    !Route::is('emails.insurance') && 
+    !Route::is('emails.insurance.si') && 
+    !Route::is('emails.insurance.ta') && 
+    !Route::is('live.fishers.si') && 
+    !Route::is('live.fishers.ta'))
     <div class="header bg-gradient-primary py-7 py-lg-8">
       <div class="container">
         <div class="header-body text-center mb-7">

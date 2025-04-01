@@ -10,5 +10,6 @@ class Fishers extends Model
     protected $fillable = [
         'name',
         'image',
+        'language',
     ];
 }

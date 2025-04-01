@@ -46,6 +46,13 @@ Route::get('/wp-json/app/api/harbour_locations', [ApiController::class, 'getHarb
 // });
 Route::get('live/fishers', [FishersController::class, 'fishers'])->name('live.fishers');
 Route::get('insurance', [EmailsController::class,'insurance'])->name('emails.insurance');
+
+Route::get('live/fishers/si', [FishersController::class, 'fishersSi'])->name('live.fishers.si');
+Route::get('insurance/si', [EmailsController::class,'insuranceSi'])->name('emails.insurance.si');
+
+Route::get('live/fishers/ta', [FishersController::class, 'fishersTa'])->name('live.fishers.ta');
+Route::get('insurance/ta', [EmailsController::class,'insuranceTa'])->name('emails.insurance.ta');
+
 Route::post('insurance/store', [ContactController::class,'store'])->name('insurances.store');
 
 Route::resource('emails', EmailsController::class);

@@ -8,7 +8,7 @@
   
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header text-center">{{ __('Add Fisher') }}</div>
+                  <div class="card-header text-center">{{ __('Add Image') }}</div>
   
                   <div class="card-body">
     <form action="{{ route('fishers.store') }}" method="POST" enctype="multipart/form-data">

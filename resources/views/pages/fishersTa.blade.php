@@ -3,7 +3,7 @@
 
 <div class="container-fluid mt-6">
   <div class="text-center text-muted mb-4">
-    <h1 class="text-white fw-bold" style="font-size: 40px">சாயூ மீன் விலை</h1>
+    <h1 class="text-white fw-bold" style="font-size: 40px">சைக்க்லோன் குறியீட்டு காப்பீடு</h1>
     
   </div>
     <div class="row">

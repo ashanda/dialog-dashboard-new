@@ -3,7 +3,7 @@
 
 <div class="container-fluid mt-6">
   <div class="text-center text-muted mb-4">
-    <h1 class="text-white fw-bold" style="font-size: 40px">සයූර් මාළු මිලකරණය</h1>
+    <h1 class="text-white fw-bold" style="font-size: 40px">මසුන් ගැව‍සෙන ප්‍රදේශ</h1>
     
   </div>
     <div class="row">

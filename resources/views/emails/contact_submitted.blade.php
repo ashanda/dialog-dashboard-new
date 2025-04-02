@@ -67,7 +67,7 @@
             </ul>
         </div>
         <div class="email-footer">
-            <p>Best regards,<br>Your Company</p>
+            <p>Best regards,<br>Sayuru Team</p>
         </div>
     </div>
 </body>

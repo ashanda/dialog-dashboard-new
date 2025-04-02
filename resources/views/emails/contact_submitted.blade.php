@@ -55,19 +55,25 @@
     </style>
 </head>
 <body>
+    @php
+        $randomNumber = rand(1000, 9999);
+        $currentDateTime = now()->setTimezone('Asia/Colombo')->format('Y-m-d H:i:s');
+    @endphp
     <div class="email-container">
         <div class="email-header">
             <h2>Hello,</h2>
+            <p>#{{ $randomNumber }}</p>
             <p>You have received a new contact submission:</p>
         </div>
         <div class="email-body">
             <ul>
                 <li><strong>Name:</strong> {{ $contactFormData['name'] }}</li>
                 <li><strong>Contact:</strong> {{ $contactFormData['contact'] }}</li>
+                <li><strong>Submit Date & TIme:</strong> {{ $currentDateTime }}</li>
             </ul>
         </div>
         <div class="email-footer">
-            <p>Best regards,<br>Your Company</p>
+            <p>Best regards,<br>Sayuru Team</p>
         </div>
     </div>
 </body>

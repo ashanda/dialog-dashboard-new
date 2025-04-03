@@ -12,7 +12,7 @@
                       
                     </div>
           <div class="col-lg-6 col-5 text-right">
-            <a href="{{ route('fishers.create') }}" class="btn btn-primary">Add Fisher</a>
+            <a href="{{ route('fishers.create') }}" class="btn btn-primary">Add Image</a>
           </div>
 
                     

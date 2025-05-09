@@ -51,7 +51,7 @@
                                 
                                    <select name="account_type" class="form-control" required>
                                     <option value="1" @if($user->type == 1) selected @endif>Admin</option>
-                                    <option value="2" @if($user->type == 2) selected @endif>Location Manager</option>
+                                    <option value="0" @if($user->type == 0) selected @endif>Fisher Manage</option>
                                 </select>
 
 

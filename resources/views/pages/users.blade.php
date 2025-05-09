@@ -62,7 +62,7 @@
                       @elseif ( $user->type == 'manager' )
                         {{ 'Location manager' }}
                       @elseif ( $user->type == 'user' )
-                        {{ 'User' }}
+                        {{ 'Fiesher Manager' }}
                       @else
                        
                       @endif

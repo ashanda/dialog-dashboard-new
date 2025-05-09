@@ -51,7 +51,7 @@
                                 
                                     <select name="account_type"  class="form-control" required>
                                         <option value="1">Admin</option>
-                                        <option value="2">Location Maneger</option>
+<!--                                         <option value="2">Location Maneger</option> -->
                                         <option value="0">Fisher Manage</option>
                                     </select>
                             </div>

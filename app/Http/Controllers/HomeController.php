@@ -68,7 +68,7 @@ $location_json = json_encode($locationsArray);
     $validatedData = $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users',
-        'account_type' => 'required|in:1,2,3', // Assuming 'account_type' should be 1 or 2
+        'account_type' => 'required|in:1,2,3,0', // Assuming 'account_type' should be 1 or 2
         'password' => 'required|min:6|confirmed',
     ]);
 try {

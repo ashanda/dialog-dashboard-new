@@ -161,7 +161,12 @@ $location_json = json_encode($locationsArray);
          $user->name =  $request->name;
          $user->email =  $request->email;
          $user->type =  $request->account_type;
-         $user->password = bcrypt( $request->password);
+            if ($request->filled('password')) {
+            $request->validate([
+                'password' => 'required|string|min:6|confirmed',
+            ]);
+            $user->password = bcrypt($request->password);
+            }
             
          // Save the user to the database
          $user->save();

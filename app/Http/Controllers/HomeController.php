@@ -95,7 +95,7 @@ try {
 
         public function users(){
             if(Auth::user()->type == 'admin'){
-                 $users = User::whereIn('type', [2, 0])->paginate(10);
+                 $users = User::whereIn('type', [1, 0])->paginate(10);
                 }else{
                     
                 }

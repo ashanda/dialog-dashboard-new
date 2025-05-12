@@ -179,6 +179,10 @@ $location_json = json_encode($locationsArray);
         return redirect()->back()->with('error', 'Habour location not found!');
     }
 
+    if($users->id == 1){
+        Alert::warning('Warning','You cannot delete this user!');
+        return redirect()->back()->with('error', 'You cannot delete this user!');
+    }    
     // Delete the habour location
     $users->delete();
     Alert::success('Success', 'User deleted successfully!'); 

@@ -1,4 +1,8 @@
 @extends('layouts.master')
+@section('header_links')
+<!-- SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+@endsection
 @section('dashboard')
 
 
@@ -76,18 +80,11 @@
                     <td class="text-left">
                                                  
                          <a href="{{ route('admin.users_edit', $user->id) }}" class="btn btn-default edit_data">Edit</a>
-                            <form action="{{ route('admin.users_destroy', $user->id) }}" id="delete-form" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-warning" onclick="confirmDelete()">Delete</button>
-
+                            <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('admin.users_destroy', $user->id) }}" style="display:inline-block;">
+                              @csrf
+                              @method('DELETE')
+                              <button type="button" class="btn btn-warning" onclick="confirmDelete({{ $user->id }})">Delete</button>
                             </form>
-                     
-                         <form id="delete-form" method="post" action="{{ route('admin.users_destroy', $user->id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <!-- Add other form fields or inputs if needed -->
-                    </form>
                     </td>
                     
                   </tr>
@@ -163,8 +160,8 @@
      
 <!-- SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
-      <script>
-      function confirmDelete() {
+     <script>
+      function confirmDelete(userId) {
         Swal.fire({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
@@ -176,7 +173,7 @@
         }).then((result) => {
           if (result.isConfirmed) {
             // If user confirms the delete action, submit the form
-            document.getElementById('delete-form').submit();
+            document.getElementById('delete-form-' + userId).submit();
           }
         });
       }

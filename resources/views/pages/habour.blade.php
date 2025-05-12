@@ -78,18 +78,14 @@
 
                        
                       <a href="{{ route('habour-location.edit', $location->id) }}" class="btn btn-default edit_data">Edit</a>
-                            <form action="{{ route('habour-location.destroy', $location->id) }}" id="delete-form" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-warning" onclick="confirmDelete()">Delete</button>
-
-                            </form>
-                     
-                         <form id="delete-form" method="post" action="{{ route('habour-location.destroy', $location->id) }}">
-    @csrf
-    @method('DELETE')
-    <!-- Add other form fields or inputs if needed -->
-</form>
+                            <form action="{{ route('habour-location.destroy', $location->id) }}" 
+                                id="delete-form-{{ $location->id }}" 
+                                method="POST" 
+                                style="display: inline-block;">
+                              @csrf
+                              @method('DELETE')
+                              <button type="button" class="btn btn-warning" onclick="confirmDelete({{ $location->id }})">Delete</button>
+                          </form>
 
                     </td>
                     
@@ -206,7 +202,7 @@
 <!-- SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
       <script>
-      function confirmDelete() {
+      function confirmDelete(locationId) {
         Swal.fire({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
@@ -218,7 +214,7 @@
         }).then((result) => {
           if (result.isConfirmed) {
             // If user confirms the delete action, submit the form
-            document.getElementById('delete-form').submit();
+            document.getElementById('delete-form-' + locationId).submit();
           }
         });
       }

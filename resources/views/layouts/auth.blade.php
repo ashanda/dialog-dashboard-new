@@ -86,6 +86,7 @@
   <!--   Core   -->
   <script src="{{ asset('assets/js/plugins/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!--   Optional JS   -->
   <!--   Argon JS   -->
   <script src="{{ asset('assets/js/argon-dashboard.min.js?v=1.1.2') }}"></script>

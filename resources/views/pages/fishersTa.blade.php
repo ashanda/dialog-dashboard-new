@@ -16,29 +16,42 @@
             </div>
 
             <!-- Card Image Slider -->
+            @php
+                $images = [];
+                for ($i = 1; $i <= 5; $i++) {
+                    $field = 'image_day' . $i;
+                    if (!empty($fisher->$field)) {
+                        $images[] = ['url' => asset('storage/' . $fisher->$field), 'day' => $i];
+                    }
+                }
+            @endphp
+
+            @if(count($images) > 0)
             <div id="fisherCarousel{{ $fisher->id }}" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    @for ($i = 1; $i <= 5; $i++)
-                        @php $field = 'image_day' . $i; @endphp
-                        @if(!empty($fisher->$field))
-                        <div class="carousel-item @if($i == 1) active @endif">
-                            <img src="{{ asset('storage/' . $fisher->$field) }}" class="d-block w-100" alt="Day {{ $i }} Image">
+                    @foreach($images as $index => $img)
+                        <div class="carousel-item @if($index == 0) active @endif">
+                            <img src="{{ $img['url'] }}" class="d-block w-100" alt="Day {{ $img['day'] }} Image">
                             <div class="carousel-caption d-none d-md-block">
-                                <span class="badge bg-primary">Day {{ $i }}</span>
+                                <span class="badge bg-primary">Day {{ $img['day'] }}</span>
                             </div>
                         </div>
-                        @endif
-                    @endfor
+                    @endforeach
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#fisherCarousel{{ $fisher->id }}" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#fisherCarousel{{ $fisher->id }}" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                @if(count($images) > 1)
+                    <button class="carousel-control-prev" type="button" data-bs-target="#fisherCarousel{{ $fisher->id }}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#fisherCarousel{{ $fisher->id }}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                @endif
             </div>
+            @else
+                <p class="text-center text-muted mt-3">No images available</p>
+            @endif
             
             <!-- Card Footer -->
             <div class="card-footer text-center">

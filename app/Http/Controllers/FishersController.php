@@ -47,10 +47,7 @@ class FishersController extends Controller
             }
         }
 
-        // Optionally set the first image as the main one
-        if (!empty($data['image_day1'])) {
-            $data['image'] = $data['image_day1'];
-        }
+        
 
         Fishers::create($data);
 

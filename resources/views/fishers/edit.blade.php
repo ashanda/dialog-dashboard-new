@@ -15,7 +15,7 @@
         @csrf
         @method('PUT')
         <div class="mb-3">
-            <label class="form-label">Name</label>
+            <label class="form-label">Sinhala Name</label>
             <input type="text" name="sinhala_name" class="form-control" value="{{ $fisher->sinhala_name }}" required>
         </div>
         <div class="mb-3">

@@ -31,7 +31,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Image</th>
-                        <th>Language</th>
+                        {{-- <th>Language</th> --}}
                         <th>Last Updated</th>
                         <th>Actions</th>
                     </tr>
@@ -39,9 +39,9 @@
                 <tbody>
                   @foreach($fishers as $fisher)
                   <tr>
-                      <td>{{ $fisher->name }}</td>
+                      <td>{{ $fisher->sinhala_name ?? '' }} {{ ' | '.$fisher->english_name ?? '' }} {{ ' | '.$fisher->tamil_name ?? '' }}</td>
                       <td><img src="{{ asset('storage/'.$fisher->image) }}" width="100" alt="Fisher Image"></td>
-                      <td>{{ $fisher->language }}</td>
+                      {{-- <td>{{ $fisher->language }}</td> --}}
                       <td>{{ $fisher->updated_at }}</td>
                       <td>
                           <a href="{{ route('fishers.edit', $fisher->id) }}" class="btn btn-default">Edit</a>

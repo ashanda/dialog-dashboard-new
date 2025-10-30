@@ -23,21 +23,41 @@ class FishersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'language'=> 'required|string|max:255'
+            'sinhala_name' => 'required|string|max:255',
+            'english_name' => 'required|string|max:255',
+            'tamil_name'   => 'required|string|max:255',
+            'image_day1'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_day2'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_day3'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_day4'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image_day5'   => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $imagePath = $request->file('image')->store('fishers', 'public');
+        $data = [
+            'sinhala_name' => $request->sinhala_name,
+            'english_name' => $request->english_name,
+            'tamil_name'   => $request->tamil_name,
+        ];
 
-        Fishers::create([
-            'name' => $request->name,
-            'language' => $request->language,
-            'image' => $imagePath
-        ]);
+        // loop through all day images and store if present
+        for ($i = 1; $i <= 5; $i++) {
+            $field = "image_day{$i}";
+            if ($request->hasFile($field)) {
+                $data[$field] = $request->file($field)->store('fishers', 'public');
+            }
+        }
+
+        // Optionally set the first image as the main one
+        if (!empty($data['image_day1'])) {
+            $data['image'] = $data['image_day1'];
+        }
+
+        Fishers::create($data);
+
         Alert::success('Success', 'Fisher created successfully!');
         return redirect()->route('fishers.index');
     }
+
 
     public function edit($id)
     {
@@ -49,27 +69,40 @@ class FishersController extends Controller
     {
         $fisher = Fishers::findOrFail($id);
 
+        // ✅ Validate inputs
         $request->validate([
-            'name' => 'sometimes|required|string|max:255',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'language' => 'sometimes|required|string|max:255'
+            'sinhala_name' => 'sometimes|required|string|max:255',
+            'english_name' => 'sometimes|required|string|max:255',
+            'tamil_name'   => 'sometimes|required|string|max:255',
+            'image_day1'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_day2'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_day3'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_day4'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_day5'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($fisher->image);
-            $imagePath = $request->file('image')->store('fishers', 'public');
-            $fisher->image = $imagePath;
+        // ✅ Update text fields
+        $fisher->fill($request->only(['sinhala_name', 'english_name', 'tamil_name']));
+
+        // ✅ Handle up to 5 images
+        for ($i = 1; $i <= 5; $i++) {
+            $field = "image_day{$i}";
+
+            if ($request->hasFile($field)) {
+                // Delete old image if exists
+                if (!empty($fisher->$field) && Storage::disk('public')->exists($fisher->$field)) {
+                    Storage::disk('public')->delete($fisher->$field);
+                }
+
+                // Store new image
+                $fisher->$field = $request->file($field)->store('fishers', 'public');
+            }
         }
 
-        if ($request->has('name')) {
-            $fisher->name = $request->name;
-        }
-        if ($request->has('language')) {
-            $fisher->language = $request->language;
-        }
-
+        // ✅ Save updates
         $fisher->save();
-        Alert::success('Success', 'Fisher update successfully!'); 
+
+        Alert::success('Success', 'Fisher updated successfully!');
         return redirect()->route('fishers.index');
     }
 
@@ -83,15 +116,15 @@ class FishersController extends Controller
     }
 
     public function fishers(){
-        $allFishers = Fishers::where('language','English')->get();
+        $allFishers = Fishers::get();
         return view('pages.fishers', compact('allFishers'));
     }
     public function fishersSi(){
-        $allFishers = Fishers::where('language','English')->get();
+        $allFishers = Fishers::get();
         return view('pages.fishersSi', compact('allFishers'));
     }
     public function fishersTa(){
-        $allFishers = Fishers::where('language','English')->get();
+        $allFishers = Fishers::get();
         return view('pages.fishersTa', compact('allFishers'));
     }
 

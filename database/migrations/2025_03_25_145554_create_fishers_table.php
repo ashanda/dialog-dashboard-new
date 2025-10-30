@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('fishers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('sinhala_name');
+            $table->string('english_name');
+            $table->string('tamil_name');
             $table->string('image');
             $table->timestamps();
         });

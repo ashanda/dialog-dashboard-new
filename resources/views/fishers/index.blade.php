@@ -40,7 +40,7 @@
                   @foreach($fishers as $fisher)
                   <tr>
                       <td>{{ $fisher->sinhala_name ?? '' }} {{ ' | '.$fisher->english_name ?? '' }} {{ ' | '.$fisher->tamil_name ?? '' }}</td>
-                      <td><img src="{{ asset('storage/'.$fisher->image) }}" width="100" alt="Fisher Image"></td>
+                      <td><img src="{{ asset('storage/'.$fisher->image_day1) }}" width="100" alt="Fisher Image"></td>
                       {{-- <td>{{ $fisher->language }}</td> --}}
                       <td>{{ $fisher->updated_at }}</td>
                       <td>

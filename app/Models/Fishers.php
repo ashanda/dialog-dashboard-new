@@ -8,8 +8,13 @@ class Fishers extends Model
 {
     protected $table = "fishers";
     protected $fillable = [
-        'name',
-        'image',
-        'language',
+        'sinhala_name',
+        'english_name',
+        'tamil_name',
+        'image_day1',
+        'image_day2',
+        'image_day3',
+        'image_day4',
+        'image_day5',
     ];
 }

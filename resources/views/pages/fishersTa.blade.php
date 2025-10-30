@@ -12,7 +12,7 @@
         <div class="card p-3">
             <!-- Card Header -->
             <div class="card-header bg-primary text-white">
-                <h5 class="mb-0 text-white fw-bold" style="font-size: 22px;">{{ $fisher->name }}</h5>
+                <h5 class="mb-0 text-white fw-bold" style="font-size: 22px;">{{ $fisher->tamil_name }}</h5>
             </div>
 
             <!-- Card Image -->

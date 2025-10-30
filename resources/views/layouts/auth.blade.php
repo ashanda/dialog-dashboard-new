@@ -88,7 +88,7 @@
   <!--   Optional JS   -->
   <!--   Argon JS   -->
   <script src="{{ asset('assets/js/argon-dashboard.min.js?v=1.1.2') }}"></script>
->
+
   @yield('scripts_links')
 </body>
 

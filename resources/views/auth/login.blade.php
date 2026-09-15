@@ -17,7 +17,7 @@
                   <label class="form-control-label" for="email">{{ __('Email') }}</label>
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                     </div>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" required autocomplete="email" autofocus>
 
@@ -32,7 +32,7 @@
                   <label class="form-control-label" for="password">{{ __('Password') }}</label>
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      <span class="input-group-text"><i class="fas fa-lock"></i></span>
                     </div>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
 
